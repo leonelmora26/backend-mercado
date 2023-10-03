@@ -1,36 +1,37 @@
 import bcryptjs from "bcryptjs"
 import { generarJWT } from "../middelwares/validar.js"
 import usuario from "../models/usuario.js";
+import usuario from "../models/usuario.js";
 
 const httpusuario = {
 login: async (req, res) => {
     const { usuario, password } = req.body;
 
     try {
-        const vendedor = await Usuario.findOne({ usuario })
-        if (!vendedor) {
+        const usuarios = await usuario.findOne({ usuario })
+        if (!usuarios) {
             return res.status(400).json({
-                msg: "vendedor / Password no son correctos"
+                msg: "usuarios / Password no son correctos"
             })
         }
 
-        if (vendedor.estado === 0) {
+        if (usuarios.estado === 0) {
             return res.status(400).json({
-                msg: "vendedor Inactivo"
+                msg: "usuarios Inactivo"
             })
         }
 
-        const validPassword = bcryptjs.compareSync(password, vendedor.password);
+        const validPassword = bcryptjs.compareSync(password, usuarios.password);
         if (!validPassword) {
             return res.status(401).json({
                 msg: "contraseña no son correctos"
             })
         }
 
-        const token = await generarJWT(vendedor.id);
+        const token = await generarJWT(usuarios.id);
 
         res.json({
-            vendedor,
+            usuarios,
             token
         })
 
