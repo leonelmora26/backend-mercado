@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config"
 import usuario from "./routes/usuario.js";
+import ficha from "./routes/ficha.js";
 
 const app = express();
 app.use(express.json());
