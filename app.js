@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import "dotenv/config"
-import usuario from "./models/usuario.js";
+import usuario from "./routes/usuario.js";
 
 const app = express();
 app.use(express.json());
@@ -13,7 +13,5 @@ app.use(   "/tikect", tikect)
 app.use(   "/vendedor", vendedor) */
 
 app.listen(process.env.PORT, () => {
-    mongoose.connect(process.env.Mongo_db)
-    .then(() => console.log('Connected!'));
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
