@@ -6,8 +6,8 @@ import usuario from "./routes/usuario.js";
 const app = express();
 app.use(express.json());
 app.use(   "/ususario", usuario)
-/* app.use(   "/cliente", cliente)
-app.use(   "/conductore", conductore)
+app.use(   "/ficha", ficha)
+/*app.use(   "/conductore", conductore)
 app.use(   "/destino", destino) 
 app.use(   "/tikect", tikect)
 app.use(   "/vendedor", vendedor) */
