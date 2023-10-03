@@ -1,10 +1,13 @@
+import bcryptjs from "bcryptjs"
+import { generarJWT } from "../middelwares/validar.js"
+import usuario from "../models/usuario.js";
 
-
+const httpusuario = {
 login: async (req, res) => {
     const { usuario, password } = req.body;
 
     try {
-        const vendedor = await Vendedor.findOne({ usuario })
+        const vendedor = await Usuario.findOne({ usuario })
         if (!vendedor) {
             return res.status(400).json({
                 msg: "vendedor / Password no son correctos"
@@ -37,3 +40,6 @@ login: async (req, res) => {
         })
     }
 }
+}
+
+export default httpusuario
