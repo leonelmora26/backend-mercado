@@ -1,9 +1,8 @@
 import { Router } from "express";
-import httpvendedor from "../controllers/vendedor.js";
-import { check } from "express-validator";
-import {validarJWT} from "../middelwares/validar.js"
-import validarCampos from "../middelwares/validator.js";
+import httpusuario from "../controllers/usuario.js";
 
 const router=new Router()
 
-router.post('/login', httpvendedor.login)
+router.post('/login', httpusuario.login)
+
+export default router
