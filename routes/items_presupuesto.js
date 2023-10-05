@@ -6,13 +6,14 @@ import {validarCampos} from "../middelwares/validator.js";
 const router=new Router()
 
 router.get('/itemns', httpitems_pre.getitems_pre)
-router.get('/itemns/:id',[
-    check("id", "la id es obligatoria").not().isEmpty(),
+router.get('/itemns/:nombre',[
+    check("nombre", "la nombre es obligatoria").not().isEmpty(),
     validarCampos
 ], httpitems_pre.getitemspreid)
 router.post('/agregar',[
     check("nombre", "el nombre es obligatorio").not().isEmpty(),
-    check("presupuesto", "el telefono es obligatorio").not().isEmpty(),
+    check("presupuesto", "el presupuesto es obligatorio").not().isEmpty(),
+    check("año", "el año es obligatorio").not().isEmpty(),
     validarCampos
 ],httpitems_pre.postAgregaritems_pre );
 router.put('/itemns/:id',[
