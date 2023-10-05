@@ -8,7 +8,7 @@ getusuario: async (req, res) => {
         const usuario = await Usuario.find()
         res.json({usuario})
     } catch (error) {
-        res.status(400).js({error})
+        res.status(400).json({error})
     }
 },
 getusuariocedula: async (req, res) =>{
@@ -29,7 +29,7 @@ postAgregarusuario: async (req, res) => {
         await usuarios.save()
         res.json({ usuarios })
     } catch (error) {
-        res.status(400).json({ error })
+        res.status(400).json({ error: "cara de verga" })
     }
 
 },

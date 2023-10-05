@@ -11,7 +11,7 @@ const helpersFicha = {
         req.req.fichaUpdate = existe;
     },
 
-    existeCedula: async (numero, req) => {
+    existeNumero: async (numero, req) => {
         if (numero) {
             const existe = await Ficha.findOne({ numero });
             if (existe) {
