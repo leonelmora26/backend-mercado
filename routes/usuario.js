@@ -17,7 +17,7 @@ router.post('/agregar',[
     check("password", "la contraseña es obligatoria").not().isEmpty(),
     check("rol", "el rol es obligatorio").not().isEmpty(),
     validarCampos
-],httpusuario.postAgregarusuario );
+],httpusuario.registroUsuario );
 router.put('/usuario/:id',[
 ], httpusuario.putEditarusuario);
 router.put('usuario/in/:id',[

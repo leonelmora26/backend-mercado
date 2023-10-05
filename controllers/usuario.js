@@ -20,19 +20,46 @@ getusuariocedula: async (req, res) =>{
         res.json({ error })
     }
 },
-postAgregarusuario: async (req, res) => {
+/* postAgregarusuario: async (req, res) => {
     try {
         const { nombre, cedula, telefono, usuario, password, rol } = req.body
         const usuarios = new Usuario({nombre, cedula, telefono, usuario, password, rol})
-        const salt = bcryptjs.genSalt()
-        usuarios.password = bcryptjs.hashSync(password, salt)
+        
         await usuarios.save()
         res.json({ usuarios })
     } catch (error) {
         res.status(400).json({ error: "cara de verga" })
     }
 
-},
+}, */
+registroUsuario: async (req, res) => {
+    try {
+      const {
+        nombre,
+        cedula,
+        telefono,
+        usuario,
+        password,
+        rol,
+      } = req.body;
+      const usuarios = new Usuario({
+        nombre,
+        cedula,
+        telefono,
+        usuario,
+        password,
+        rol,
+      });
+      const salt = bcryptjs.genSaltSync();
+      usuarios.password = bcryptjs.hashSync(password, salt);
+
+      await usuarios.save();
+
+      res.json({ usuarios });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
 putEditarusuario: async (req, res) => {
     try {
         const { id } = req.params
@@ -76,7 +103,7 @@ login: async (req, res) => {
         const validPassword = bcryptjs.compareSync(password, usuarios.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: "contraseña no son correctos"
+                msg: "password no son correctos"
             })
         }
 

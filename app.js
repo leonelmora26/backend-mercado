@@ -6,7 +6,7 @@ import ficha from "./routes/ficha.js";
 
 const app = express();
 app.use(express.json());
-app.use(   "/ususario", usuario)
+app.use(   "/usuario", usuario)
 app.use(   "/ficha", ficha)
 /*app.use(   "/conductore", conductore)
 app.use(   "/destino", destino) 
@@ -17,5 +17,5 @@ app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/test')
+mongoose.connect('mongodb://127.0.0.1:27017/ProyectoFinal')
   .then(() => console.log('Connected!'));
