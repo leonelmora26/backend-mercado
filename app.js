@@ -4,15 +4,12 @@ import "dotenv/config"
 import usuario from "./routes/usuario.js";
 import ficha from "./routes/ficha.js";
 import items_presupuesto from "./routes/items_presupuesto.js"
-import pedido from "./routes/pedido.js"
 
 const app = express();
 app.use(express.json());
 app.use(   "/usuario", usuario)
 app.use(   "/ficha", ficha)
 app.use(   "/items", items_presupuesto)
-app.use(   "/pedido", pedido)
-
 
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
