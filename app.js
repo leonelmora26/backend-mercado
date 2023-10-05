@@ -6,6 +6,8 @@ import ficha from "./routes/ficha.js";
 import items_presupuesto from "./routes/items_presupuesto.js"
 import area from "./routes/area.js"
 import producto from "./routes/producto.js";
+import lote from "./routes/lote.js";
+import distribucion_presupuesto from "./routes/distribucion_presupuesto.js";
 
 const app = express();
 app.use(express.json());
@@ -15,6 +17,8 @@ app.use(   "/items", items_presupuesto)
 app.use(   "/area", area)
 app.use(   "/producto", producto)
 
+app.use(   "/lote", lote)
+app.use(   "/dispresupuesto", distribucion_presupuesto)
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });

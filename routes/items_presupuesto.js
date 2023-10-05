@@ -12,7 +12,8 @@ router.get('/itemns/:nombre',[
 ], httpitems_pre.getitemspreid)
 router.post('/agregar',[
     check("nombre", "el nombre es obligatorio").not().isEmpty(),
-    check("presupuesto", "el telefono es obligatorio").not().isEmpty(),
+    check("presupuesto", "el presupuesto es obligatorio").not().isEmpty(),
+    check("año", "el año es obligatorio").not().isEmpty(),
     validarCampos
 ],httpitems_pre.postAgregaritems_pre );
 router.put('/itemns/:id',[
