@@ -20,8 +20,8 @@ getitemspreid: async (req, res) =>{
 },
 postAgregaritems_pre: async (req, res) => {
     try {
-        const { nombre, presupuesto } = req.body
-        const items = new Items_presupuesto({nombre, presupuesto})
+        const { nombre, presupuesto, año } = req.body
+        const items = new Items_presupuesto({nombre, presupuesto, año})
         
         await items.save()
         res.json({ items })
@@ -33,8 +33,8 @@ postAgregaritems_pre: async (req, res) => {
 putEditaritems_pre: async (req, res) => {
     try {
         const { id } = req.params
-        const {nombre, presupuesto} = req.body
-        const items = await Items_presupuesto.findByIdAndUpdate(id,{nombre, presupuesto}, { new: true })
+        const {nombre, presupuesto, año} = req.body
+        const items = await Items_presupuesto.findByIdAndUpdate(id,{nombre, presupuesto, año}, { new: true })
         await items.save()
         res.json({ items })
     } catch (error) {

@@ -4,6 +4,7 @@ const Items_presupuesto = new mongoose.Schema(
     {
         nombre: {type: String, require:true},
         presupuesto: {type:Number, require:true},
+        año:{type:String, require:true},
         createAd: {type:Date, default:Date.now},
     }
 )
