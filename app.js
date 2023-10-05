@@ -8,6 +8,7 @@ import area from "./routes/area.js"
 import producto from "./routes/producto.js";
 import lote from "./routes/lote.js";
 import distribucion_presupuesto from "./routes/distribucion_presupuesto.js";
+import pedido from "./routes/pedido.js"
 
 const app = express();
 app.use(express.json());
@@ -16,7 +17,7 @@ app.use(   "/ficha", ficha)
 app.use(   "/items", items_presupuesto)
 app.use(   "/area", area)
 app.use(   "/producto", producto)
-
+app.use(   "/pedido", pedido)
 app.use(   "/lote", lote)
 app.use(   "/dispresupuesto", distribucion_presupuesto)
 app.listen(process.env.PORT, () => {
