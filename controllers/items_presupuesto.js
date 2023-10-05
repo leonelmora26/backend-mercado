@@ -10,9 +10,9 @@ getitems_pre: async (req, res) => {
     }
 },
 getitemspreid: async (req, res) =>{
-    const { id } = req.params
+    const { nombre } = req.params
     try {
-        const item = await Items_presupuesto.find({ id })
+        const item = await Items_presupuesto.find({ nombre })
         res.json({ item })
     } catch (error) {
         res.json({ error })
