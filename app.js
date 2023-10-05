@@ -16,3 +16,6 @@ app.use(   "/vendedor", vendedor) */
 app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
+
+mongoose.connect('mongodb://127.0.0.1:27017/test')
+  .then(() => console.log('Connected!'));
