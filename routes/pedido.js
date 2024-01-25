@@ -13,8 +13,7 @@ router.delete("/eliminar", httppedido.deleteusuario);
 router.post("/agregar", httppedido.postpedido)
 
 export default router;
-    //   "/guardar",
-    //   [
+    //  router.post("/guardar",[
     //     check("nombre", "El nombre de ficha obligatorio").notEmpty(),
     //     check("nombre", "El nombre debe tener maximo 8 letras").isLength({min: 4}),
     //     check("numero", "El numero de la ficha debe ser obligatorio").notEmpty(),
