@@ -19,16 +19,9 @@ router.post(
   [
     check("nombre", "El nombre de lote es obligatorio").notEmpty(),
     check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
-    check("presupueto", "Debe tener su presupuesto asignado").notEmpty(),
-    check("presupuesto", "El presupuesto debe ser un número en pesos colombianos").custom((value) => {
-        // Utiliza una expresión regular para verificar si el valor es un número en pesos colombianos (ejemplo: 1,234,567)
-        const colombianPesosRegex = /^[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?$/;
-        if (!colombianPesosRegex.test(value)) {
-          throw new Error("Formato de presupuesto incorrecto. Debe ser un número en pesos colombianos.");
-        }
-        return true; // Retorna true si la validación es exitosa
-      }),
-      
+    check("presupuesto", "Debe tener su presupuesto asignado").notEmpty(),
+    check("presupuesto", "Deseas cambiar el presupuesto actual").isNumeric().withMessage("El presupuesto debe ser un número."),
+
     validarCampos 
   ],
   httpLote.postLote 
@@ -37,15 +30,8 @@ router.post(
 router.put("/editar/:id", [
   check("nombre", "Deseas cambiar el nombre").notEmpty(),
   check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
-  check("presupuesto", "Deseas cambiar el presupuesto actual").custom((value) => {
-    // Utiliza una expresión regular para verificar si el valor es un número en pesos colombianos (ejemplo: 1,234,567)
-    const colombianPesosRegex = /^[0-9]{1,3}(?:,[0-9]{3})*(?:\.[0-9]{1,2})?$/;
-    if (!colombianPesosRegex.test(value)) {
-      throw new Error("Formato de presupuesto incorrecto. Debe ser un número en pesos colombianos.");
-    }
-    return true; // Retorna true si la validación es exitosa
-  }),
-  
+  check("presupuesto", "Deseas cambiar el presupuesto actual").isNumeric().withMessage("El presupuesto debe ser un número."),
+
 validarCampos 
 ], httpLote.putLote); 
 
