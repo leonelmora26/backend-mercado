@@ -20,9 +20,6 @@ app.use(   "/producto", producto)
 app.use(   "/pedido", pedido)
 app.use(   "/lote", lote)
 app.use(   "/dispresupuesto", distribucion_presupuesto)
-app.listen(process.env.PORT, () => {
-    console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
-});
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
