@@ -12,7 +12,7 @@ router.get('/area/:id',[
 ], httparea.getareaid)
 router.get('/area/:nombre',[
     check("nombre", "la nombre es obligatoria").not().isEmpty(),
-    /* validarCampos */
+   validarCampos
 ], httparea.getareaNombre)
 router.post('/agregar',[
     check("nombre", "el nombre es obligatorio").not().isEmpty(),
