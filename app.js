@@ -24,5 +24,9 @@ app.listen(process.env.PORT, () => {
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
 
-mongoose.connect('mongodb://127.0.0.1:27017/ProyectoFinal')
+mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
+
+  app.listen(process.env.PORT, ()=> {
+    console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
+  })
