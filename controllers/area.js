@@ -60,7 +60,7 @@ const httparea = {
   },
   
   //PUT
-  ptarea: async (req, res) => {
+  putarea: async (req, res) => {
     try {
       const { id } = req.params
       const { nombre } = req.body

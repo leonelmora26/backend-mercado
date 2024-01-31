@@ -1,10 +1,10 @@
-import Ficha from "../models/ficha.js"; // Importa el modelo de ficha
+import Ficha from "../models/ficha.js";
 
 const httpFicha = {
   //GET
   getAllFicha: async (req, res) => {
     try {
-      const ficha = await Ficha.find(); // Cambia la referencia a "cliente" por "ficha"
+      const ficha = await Ficha.find();
 
       if (ficha.length === 0) {
         res.json({ msg: "No hay fichas registradas" });
@@ -19,7 +19,7 @@ const httpFicha = {
   getFichaNumero: async (req, res) => {
     try {
       const { numero } = req.params;
-      const ficha = await Ficha.findOne({ numero }); // Cambia la referencia a "cliente" por "ficha"
+      const ficha = await Ficha.findOne({ numero }); 
 
       if (!ficha) {
         res.json({ msg: "Ficha no encontrada" });

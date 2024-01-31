@@ -18,8 +18,8 @@ router.post(
   [
     check("nombre", "El nombre de ficha obligatorio").notEmpty(),
     check("nombre", "El nombre debe tener maximo 8 letras").isLength({min: 4}),
-    check("numero", "El numero de la ficha debe ser obligatorio").notEmpty(),
-    check("numero", "El numero de la ficha debe tener 7 digitos").isLength({max:7}),
+    check("codigo_ficha", "El numero de la ficha debe ser obligatorio").notEmpty(),
+    check("codigo_ficha", "El numero de la ficha debe tener 7 digitos").isLength({max:7}),
     validarCampos 
   ],
   httpFicha.postFicha
