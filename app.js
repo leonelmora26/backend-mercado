@@ -9,6 +9,7 @@ import producto from "./routes/producto.js";
 import lote from "./routes/lote.js";
 import distribucion_presupuesto from "./routes/distribucion_presupuesto.js";
 import pedido from "./routes/pedido.js"
+import detalle_pedido from "./routes/detalle_pedido.js"
 
 const app = express();
 app.use(express.json());
@@ -20,6 +21,7 @@ app.use(   "/producto", producto)
 app.use(   "/pedido", pedido)
 app.use(   "/lote", lote)
 app.use(   "/dispresupuesto", distribucion_presupuesto)
+app.use(   "/detalle_pedido", detalle_pedido)
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
