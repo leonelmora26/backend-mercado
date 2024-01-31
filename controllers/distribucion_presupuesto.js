@@ -26,7 +26,7 @@ postAgregardispresupuesto: async (req, res) => {
         await dispresupuestos.save()
         res.json({ dispresupuestos })
     } catch (error) {
-        res.status(400).json({ error: "cara de verga" })
+        res.status(400).json({ error })
     }
 
 },

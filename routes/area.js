@@ -20,7 +20,9 @@ router.post('/agregar',[
 ],httparea.postagregararea );
 router.put('/area/:id',[
 ], httparea.putarea);
-router.put('area/in/:id',[
+router.delete('/area/:id',[
 ], httparea.deletearea);
+router.delete('/area/in/:id',[
+], httparea.deleteFichaNumero);
 
 export default router
