@@ -60,7 +60,7 @@ const httparea = {
   },
   
   //PUT
-  putarea: async (req, res) => {
+  ptarea: async (req, res) => {
     try {
       const { id } = req.params
       const { nombre } = req.body
@@ -83,13 +83,13 @@ const httparea = {
   
   deleteFichaNumero: async () => {
     try {
-      const { id } = req.params
-      const area = await Area.findOneAndDelete(id)
+      const { ficha } = req.params
+      const area = await Area.findOneAndDelete(ficha)
       res.json({ msg: "ficha eliminada del area" })
     } catch (error) {
       res.status(400).json({ error })
     }
-  },
+  },u
 };
 
 export default httparea;
