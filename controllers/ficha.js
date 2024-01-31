@@ -48,8 +48,8 @@ const httpFicha = {
 
   postFicha: async (req, res) => {
     try {
-      const { nombre, numero} = req.body;
-      const ficha = new Ficha({ nombre, numero});
+      const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, ficha_fin} = req.body;
+      const ficha = new Ficha({ codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, ficha_fin});
   
       await ficha.save();
   
