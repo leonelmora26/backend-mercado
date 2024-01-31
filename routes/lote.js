@@ -20,7 +20,7 @@ router.post(
     check("nombre", "El nombre de lote es obligatorio").notEmpty(),
     check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
     check("presupuesto", "Debe tener su presupuesto asignado").notEmpty(),
-    check("presupuesto", "Deseas cambiar el presupuesto actual").isNumeric().withMessage("El presupuesto debe ser un número."),
+    check("presupuesto", "Ingresa un presupuesto a asignar").isNumeric().withMessage("El presupuesto debe ser un número."),
 
     validarCampos 
   ],
