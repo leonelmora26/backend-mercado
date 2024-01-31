@@ -11,7 +11,6 @@ router.get('/dispresupuesto/:id',[
     validarCampos
 ], httpdispresupuesto.getdispresupuestopreid)
 router.post('/agregar',[
-    check("nombre", "el nombre es obligatorio").not().isEmpty(),
     check("presupuesto", "el telefono es obligatorio").not().isEmpty(),
     validarCampos
 ],httpdispresupuesto.postAgregardispresupuesto );
