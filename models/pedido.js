@@ -2,13 +2,13 @@ import mongoose from "mongoose"
 
 const Pedido = new mongoose.Schema(
     {
-        fechacreacion: {type:Number, default:Date.now},
-        fechaentrega: {type: Number, requiere:true},
-        iddistribucionloteficha: {type: Number, require:true},
-        Instructor_encargado:{type: String, require:true},
+        fechacreacion: {type: Date, default:Date.now},
+        fechaentrega: {type: Date, requiere:true},
+        idDistribucionLoteFicha: {type:mongoose.Schema.Types.ObjectId,ref:'distribucion_lote_ficha', require:true},
+        idInstructorEncargado: {type:mongoose.Schema.Types.ObjectId,ref:'Usuario', require:true},
         Subtotal: {type:Number, require:true},
         Total: {type: Number, require:true},
-        Estado_solicitud: {type: String, require:true},
+        Estado: {type: Boolean, default:1},
         createAd: {type:Date, default:Date.now},
 
     }

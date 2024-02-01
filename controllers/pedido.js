@@ -9,33 +9,20 @@ const httppedido = {
             res.status(400).json({error})
         }
     },
-    getinstructor: async (req, res) =>{
-        const {  Instructor_encargado } = req.params
+
+    getId: async (req, res) => {
         try {
-            const pedido = await Pedido.find({  Instructor_encargado })
-            res.json({ pedido })
+          const pedido = await Pedido.findById(req.params.id);
+          if (!pedido) {
+            return res.status(404).json({ mensaje: "Pedido no encontrado" });
+          }
+          res.json(pedido);
         } catch (error) {
-            res.json({ error })
+          res.status(500).json({ error: error.message });
         }
-    },
-    getfechainiciacion: async (req, res) =>{
-        const {  fechacreacion } = req.params
-        try {
-            const pedido = await Pedido.find({  fechacreacion })
-            res.json({ pedido })
-        } catch (error) {
-            res.json({ error })
-        }
-    },
-    getfechaentrega: async (req, res) =>{
-        const {  fechaentrega } = req.params
-        try {
-            const pedido = await Pedido.find({  fechaentrega })
-            res.json({ pedido })
-        } catch (error) {
-            res.json({ error })
-        }
-    },
+      },
+
+
     postpedido: async (req, res) => {
         try {
             const { fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargado , Subtotal , Total , Estado_solicitud , createAd} = req.body
@@ -47,25 +34,16 @@ const httppedido = {
         }
     
     },
-    putpedido: async (req, res) => {
-        try {
-            const { id } = req.params
-            const {fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargad , Subtota , Total , Estado_solicitud , createAd} = req.body
-            const pedido = await Pedido.findByIdAndUpdate(id,{fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargad , Subtota , Total , Estado_solicitud , createAd}, { new: true })
-            await pedido.save()
-            res.json({ pedido })
-        } catch (error) {
-            res.status(400).json({ error })
-        }
-    },
-    deleteusuario: async (req, res) => {
-        try {
-            const { id } = req.params
-            const pedido = await Pedido.findByIdAndDelete(id)
-            res.json({pedido})
-        } catch (error) {
-            res.status(400).json({ error })
-        }
-    }
+    // putpedido: async (req, res) => {
+    //     try {
+    //         const { id } = req.params
+    //         const {fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargad , Subtota , Total , Estado_solicitud , createAd} = req.body
+    //         const pedido = await Pedido.findByIdAndUpdate(id,{fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargad , Subtota , Total , Estado_solicitud , createAd}, { new: true })
+    //         await pedido.save()
+    //         res.json({ pedido })
+    //     } catch (error) {
+    //         res.status(400).json({ error })
+    //     }
+    // },
 }
     export default httppedido

@@ -5,19 +5,23 @@ import { validarCampos } from "../middelwares/validator.js";
 const router = new Router();
 
 router.get("/all", httppedido.getpedido);
-router.get("/instructor", httppedido.getinstructor);
-router.get("/fechacreacion", httppedido.getfechainiciacion);
-router.get("/fechaentrega", httppedido.getfechaentrega);
-router.put(
-  "/pedido/id",
-  [
-    check("nombre", "Deseas cambiar el nombre").notEmpty(),
-    check("numero", "Deseas cambiar el numero de ficha").notEmpty(),
-    validarCampos,
-  ],
-  httppedido.putpedido
-);
-router.delete("/eliminar", httppedido.deleteusuario);
+
+router.get("/buscarid/:id", [
+  check("id", "Digite el ID").not().isEmpty(),
+  check("id", "No es un Mongo ID válido").isMongoId(),
+  validarCampos
+], httppedido.getId);
+
+// router.put(
+//   "/pedido/id",
+//   [
+//     check("nombre", "Deseas cambiar el nombre").notEmpty(),
+//     check("numero", "Deseas cambiar el numero de ficha").notEmpty(),
+//     validarCampos,
+//   ],
+//   httppedido.putpedido
+// );
+
 router.post(
   "/agregar",
   [
