@@ -11,4 +11,4 @@ const detalle_pedido = new Schema({
 
 });
 
-export default mongoose.model("Detalle_pedido", detalle_pedido)
+export default mongoose.model("detalle_pedido", detalle_pedido)

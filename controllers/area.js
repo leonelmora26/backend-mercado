@@ -89,7 +89,7 @@ const httparea = {
     } catch (error) {
       res.status(400).json({ error })
     }
-  },u
+  },
 };
 
 export default httparea;

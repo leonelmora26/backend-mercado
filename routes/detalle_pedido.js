@@ -9,16 +9,20 @@ router.get("/all", httpdetalle_pedido.getAlldetalle_pedido);
 
 router.get("/busacar/:id", httpdetalle_pedido.getdetalle_pedidoid);
 
-router.put("/editar/:id", [
-    check("nombre", "Deseas cambiar el nombre").notEmpty(),
-    check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
-    check("presupuesto", "Deseas cambiar el presupuesto actual").isNumeric().withMessage("El presupuesto debe ser un número."),
-  
-  validarCampos 
-  ], httpdetalle_pedido.putdetalle_pedido); 
+router.post("/agregar",[
+    check("cantidad", "tienes que introducir una cantidad").isNumeric(),
+    check("idpedido", "porfavor ingrese un id de pedido").notEmpty(),
+    check("idproducto", "porfavor ingrese un id de producto").notEmpty(),
+  validarCampos
+], httpdetalle_pedido.postdetalle_pedido);
 
-router.put("/inactivar/:id", httpdetalle_pedido.putdetalle_pedidoInactivar); 
+// router.put("/editar/:id", [
+//     check("cantidad", "Deseas cambiar el nombre").isNumeric(),
+//   validarCampos 
+//   ], httpdetalle_pedido.getAlldetalle_pedido); 
 
-router.put("/activar/:id", httpdetalle_pedido.putdetalle_pedidoActivar); 
+// router.put("/inactivar/:id", httpdetalle_pedido.putdetalle_pedidoInactivar); 
+
+// router.put("/activar/:id", httpdetalle_pedido.putdetalle_pedidoActivar); 
 
 export default router;
