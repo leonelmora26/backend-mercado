@@ -6,7 +6,7 @@ const httpdetalle_pedido = {
         try {
             const Detalle_pedido = await detalle_pedido.find()
                 .populate("idpedido", "fechacreacion")
-                .populate("idproductor", "nombre drescipcion precioUnitario");
+                .populate("idproductor", "nombre", "precioUnitario")
             res.json({ Detalle_pedido });
         } catch (error) {
             res.status(400).json({ error });
@@ -18,7 +18,7 @@ const httpdetalle_pedido = {
             const { id } = req.params
             const Detalle_pedido = await detalle_pedido.findById({ id })
                 .populate("idpedido", "fechacreacion")
-                .populate("idproductor", "nombre drescipcion precioUnitario");
+                .populate("idproductor", "nombre", "precioUnitario");
             res.json({ Detalle_pedido })
         } catch (error) {
             res.json({ error })
