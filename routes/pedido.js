@@ -25,8 +25,8 @@ router.get("/buscarid/:id", [
 router.post(
   "/agregar",
   [
-    check('fechaCreacion', "Digite la fecha de creación").not().isEmpty(),
-    check('fechaEntrega', "Digite la fecha de entrega").not().isEmpty(),
+    check('fechacreacion', "Digite la fecha de creación").not().isEmpty(),
+    check('fechaentrega', "Digite la fecha de entrega").not().isEmpty(),
     check('idDistribucionLoteFicha', "Digite el ID de DistribucionLoteFicha").not().isEmpty(),
     check('idDistribucionLoteFicha', "No es un Mongo ID válido").isMongoId(),
     check('idInstructorEncargado', "Digite el ID de InstructorEncargado").not().isEmpty(),
