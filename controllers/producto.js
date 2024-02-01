@@ -59,15 +59,43 @@ putproducto: async (req, res) => {
         res.status(400).json({ error })
     }
 },
-deleteproducto: async (req, res) => {
+
+putproductoInactivar: async (req, res) => {
     try {
-        const { id } = req.params
-        const productos = await Producto.findByIdAndDelete(id)
-        res.json({productos})
+      const { id } = req.params;
+      const productos = await Producto.findByIdAndUpdate(
+        id,
+        { estado: 0 },
+        { new: true }
+      );
+      res.json(productos);
     } catch (error) {
-        res.status(400).json({ error })
+      res.status(400).json({ error });
     }
-},
-}
+  },
+
+putproductoActivar: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const productos = await Producto.findByIdAndUpdate(
+        id,
+        { estado: 1 },
+        { new: true }
+      );
+      res.json(productos);
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
+};
+// deleteproducto: async (req, res) => {
+//     try {
+//         const { id } = req.params
+//         const productos = await Producto.findByIdAndDelete(id)
+//         res.json({productos})
+//     } catch (error) {
+//         res.status(400).json({ error })
+//     }
+// },
 
 export default httpproducto

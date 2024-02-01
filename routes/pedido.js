@@ -36,7 +36,13 @@ router.post(
   httppedido.postpedido
 );
 
+router.put("/inactivar/:id", httppedido.putpedidoInactivar); 
+
+router.put("/activar/:id", httppedido.putpedidoActivar); 
+
 export default router;
+
+
 //  router.post("/guardar",[
 //     check("nombre", "El nombre de ficha obligatorio").notEmpty(),
 //     check("nombre", "El nombre debe tener maximo 8 letras").isLength({min: 4}),
@@ -53,9 +59,6 @@ export default router;
 //   validarCampos
 // ], httpFicha.putFicha);
 
-// router.put("/inactivar/:id", httpFicha.putFichaInactivar); // Cambia "httpCliente.putClienteInactivar" a "httpFicha.putFichaInactivar"
-
-// router.put("/activar/:id", httpFicha.putFichaActivar); // Cambia "httpCliente.putClienteActivar" a "httpFicha.putFichaActivar"
 
 // router.delete("/eliminar/:numero", httpFicha.deleteFicha); // Cambia "httpCliente.deleteCliente" a "httpFicha.deleteFicha"
 

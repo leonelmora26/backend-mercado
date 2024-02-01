@@ -5,8 +5,8 @@ const httpdetalle_pedido = {
     getAlldetalle_pedido: async (req, res) => {
         try {
             const Detalle_pedido = await detalle_pedido.find()
-                .populate("idpedido", "fechacreacion")
-                .populate("idproductor", "nombre", "precioUnitario")
+                .populate("pedido")
+                .populate("producto")
             res.json({ Detalle_pedido });
         } catch (error) {
             res.status(400).json({ error });

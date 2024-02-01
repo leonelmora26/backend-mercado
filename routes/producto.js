@@ -29,6 +29,9 @@ router.post('/agregar',[
 ],httpproducto.postAgregarproducto );
 router.put('/producto/:id',[
 ], httpproducto.putproducto);
-router.delete("/productoDel/:id", httpproducto.deleteproducto);
+router.put("/inactivar/:id", httpproducto.putproductoInactivar); 
+
+router.put("/activar/:id", httpproducto.putproductoActivar); 
+// router.delete("/productoDel/:id", httpproducto.deleteproducto);
 
 export default router
