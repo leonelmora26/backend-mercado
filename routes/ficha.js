@@ -31,7 +31,7 @@ router.put("/editar/:id", [
   validarCampos
 ], httpFicha.putFicha);
 
-router.put("/inactivar/:id", httpFicha.putFichaInactivar); // Cambia "httpCliente.putClienteInactivar" a "httpFicha.putFichaInactivar"
+router.put("/inactivar/:id", httpFicha.putFichaInactivar);
 
-router.put("/activar/:id", httpFicha.putFichaActivar); // Cambia "httpCliente.putClienteActivar" a "httpFicha.putFichaActivar"
+router.put("/activar/:id", httpFicha.putFichaActivar);
 export default router;

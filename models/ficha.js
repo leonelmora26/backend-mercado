@@ -8,7 +8,7 @@ const ficha = new Schema({
   nivel_de_formacion: {type: String, require: true},
   fecha_inicio: { type: Date, default: Date.now },
   ficha_fin: { type: Date, default: Date.now },
-  estado : { type: Number, default:1},
+  estado : { type: Boolean, default:1},
 });
 
 export default mongoose.model("ficha", ficha);
