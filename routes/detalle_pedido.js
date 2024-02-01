@@ -21,8 +21,8 @@ router.post("/agregar",[
 //   validarCampos 
 //   ], httpdetalle_pedido.getAlldetalle_pedido); 
 
-// router.put("/inactivar/:id", httpdetalle_pedido.putdetalle_pedidoInactivar); 
+router.put("/inactivar/:id", httpdetalle_pedido.putdetalle_pedidoInactivar); 
 
-// router.put("/activar/:id", httpdetalle_pedido.putdetalle_pedidoActivar); 
+router.put("/activar/:id", httpdetalle_pedido.putdetalle_pedidoActivar); 
 
 export default router;

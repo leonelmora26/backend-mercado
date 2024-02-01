@@ -38,15 +38,7 @@ const httpdetalle_pedido = {
         }
     },
 
-    // putdetalle_pedido
-
-};
-export default httpdetalle_pedido
-
-
-
-
-// putEditar: async (req, res) => {
+    // putEditar: async (req, res) => {
 //     try {
 //       const { id } = req.params;
 //       const { cantidad, idPedido, idProducto } = req.body;
@@ -61,30 +53,32 @@ export default httpdetalle_pedido
 //     }
 //   },
 
-//   putInactivar: async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const detallePedido = await DetallePedido.findByIdAndUpdate(
-//         id,
-//         { estado: 0 },
-//         { new: true }
-//       );
-//       res.json(detallePedido);
-//     } catch (error) {
-//       res.status(400).json({ error });
-//     }
-//   },
-//   putActivar: async (req, res) => {
-//     try {
-//       const { id } = req.params;
-//       const detallePedido = await DetallePedido.findByIdAndUpdate(
-//         id,
-//         { estado: 1 },
-//         { new: true }
-//       );
-//       res.json(detallePedido);
-//     } catch (error) {
-//       res.status(400).json({ error });
-//     }
-//   },
-// };
+    putdetalle_pedidoInactivar: async (req, res) => {
+            try {
+              const { id } = req.params;
+              const Detalle_pedido = await detalle_pedido.findByIdAndUpdate(
+                id,
+                { estado: 0 },
+                { new: true }
+              );
+              res.json(Detalle_pedido);
+            } catch (error) {
+              res.status(400).json({ error });
+            }
+          },
+
+    putdetalle_pedidoActivar: async (req, res) => {
+            try {
+              const { id } = req.params;
+              const Detalle_pedido = await detalle_pedido.findByIdAndUpdate(
+                id,
+                { estado: 1 },
+                { new: true }
+              );
+              res.json(Detalle_pedido);
+            } catch (error) {
+              res.status(400).json({ error });
+            }
+          },
+};
+export default httpdetalle_pedido
