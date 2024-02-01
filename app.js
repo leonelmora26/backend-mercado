@@ -10,6 +10,7 @@ import lote from "./routes/lote.js";
 import distribucion_presupuesto from "./routes/distribucion_presupuesto.js";
 import pedido from "./routes/pedido.js"
 import detalle_pedido from "./routes/detalle_pedido.js"
+import distribucion_lote_ficha from "./routes/distribucion_lote_ficha.js";
 
 const app = express();
 app.use(express.json());
@@ -22,6 +23,7 @@ app.use(   "/pedido", pedido)
 app.use(   "/lote", lote)
 app.use(   "/dispresupuesto", distribucion_presupuesto)
 app.use(   "/detalle_pedido", detalle_pedido)
+app.use(   "/disloteficha", distribucion_lote_ficha )
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
