@@ -25,8 +25,8 @@ const httppedido = {
 
     postpedido: async (req, res) => {
         try {
-            const { fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargado , Subtotal , Total , Estado_solicitud , createAd} = req.body
-            const pedido = new Pedido({fechacreacion , fechaentrega , iddistribucionloteficha , Instructor_encargado , Subtotal , Total , Estado_solicitud , createAd})
+            const { fechacreacion , fechaentrega , idDistribucionLoteFicha , idInstructorEncargado , Subtotal , total , estado , createAd} = req.body
+            const pedido = new Pedido({fechacreacion , fechaentrega , idDistribucionLoteFicha , idInstructorEncargado , Subtotal , total , estado , createAd})
             await pedido.save()
             res.json({ pedido })
         } catch (error) {
