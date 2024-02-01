@@ -8,6 +8,7 @@ const Usuario = new mongoose.Schema(
         usuario: {type:String, require:true},
         password: {type:String, require:true},
         rol:{type:String, require:true},
+        estado : { type: Number, default:1},
         createAd: {type:Date, default:Date.now},
     }
 )

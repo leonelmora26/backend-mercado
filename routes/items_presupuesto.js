@@ -18,7 +18,7 @@ router.post('/agregar',[
 ],httpitems_pre.postAgregaritems_pre );
 router.put('/itemns/:id',[
 ], httpitems_pre.putEditaritems_pre);
-router.put('itemns/in/:id',[
-], httpitems_pre.deleteitems_pre);
+router.put('/inactivar/:id', httpitems_pre.putitempresupuestoInactivar),
+router.put('/activar/:id', httpitems_pre.putitempresupuestoActivar)
 
 export default router

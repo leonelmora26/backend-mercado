@@ -20,8 +20,8 @@ router.post('/agregar',[
 ],httpusuario.registroUsuario );
 router.put('/usuario/:id',[
 ], httpusuario.putEditarusuario);
-router.put('usuario/in/:id',[
-], httpusuario.deleteusuario);
+router.put('/inactivar/:id', httpusuario.putusuarioInactivar)
+router.put('/activar/:id', httpusuario.putusuarioActivar)
 router.post('/login', httpusuario.login)
 
 export default router

@@ -34,9 +34,4 @@ router.put("/editar/:id", [
 router.put("/inactivar/:id", httpFicha.putFichaInactivar); // Cambia "httpCliente.putClienteInactivar" a "httpFicha.putFichaInactivar"
 
 router.put("/activar/:id", httpFicha.putFichaActivar); // Cambia "httpCliente.putClienteActivar" a "httpFicha.putFichaActivar"
-
-router.delete("/eliminar/:numero", httpFicha.deleteFicha); // Cambia "httpCliente.deleteCliente" a "httpFicha.deleteFicha"
-
-router.delete("/eliminar/:id", httpFicha.deleteFichaNumero); // Cambia "httpCliente.deleteClienteId" a "httpFicha.deleteFichaId"
-
 export default router;

@@ -90,29 +90,6 @@ const httpFicha = {
       res.status(400).json({ error })
     }
   },
-  
-  
-  //DELETE
-  deleteFicha: async (req, res) => {
-    try {
-      const { numero } = req.params
-      const ficha = await Ficha.findOneAndDelete({ numero })
-      res.json({ msg: "cliente eliminado" })
-    } catch (error) {
-      res.status(400).json({ error })
-    }
-  
-  },
-  
-  deleteFichaNumero: async () => {
-    try {
-      const { id } = req.params
-      const ficha = await Ficha.findOneAndDelete(id)
-      res.json({ msg: "cliente eliminado" })
-    } catch (error) {
-      res.status(400).json({ error })
-    }
-  },
 };
 
 export default httpFicha;

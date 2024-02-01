@@ -41,15 +41,25 @@ putEditardispresupuestos_pre: async (req, res) => {
         res.status(400).json({ error })
     }
 },
-deletedispresupuestos_pre: async (req, res) => {
+putdispresupuestoInactivar: async (req, res) => {
     try {
-        const { id } = req.params
-        const dispresupuestos = await Dispresupuesto.findByIdAndDelete(id)
-        res.json({dispresupuestos})
+      const { id } = req.params;
+      const dispresupuesto = await Dispresupuesto.findByIdAndUpdate(id, { estado: 0 }, { new: true });
+      res.json({ dispresupuesto });
     } catch (error) {
-        res.status(400).json({ error })
+      res.status(400).json({ error });
     }
-},
+  },
+
+  putdispresupuestoActivar: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const dispresupuesto = await Dispresupuesto.findByIdAndUpdate(id, { estado: 1 }, { new: true });
+      res.json({ dispresupuesto });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
 }
 
 export default httpdispresupuesto

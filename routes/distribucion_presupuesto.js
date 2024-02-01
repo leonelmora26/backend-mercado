@@ -16,7 +16,7 @@ router.post('/agregar',[
 ],httpdispresupuesto.postAgregardispresupuesto );
 router.put('/dispresupuesto/:id',[
 ], httpdispresupuesto.putEditardispresupuestos_pre);
-router.put('dispresupuesto/in/:id',[
-], httpdispresupuesto.deletedispresupuestos_pre);
+router.put('/dispresupuesto/activar/:id', httpdispresupuesto.putdispresupuestoActivar)
+router.put('/dispresupuesto/inactivar/:id', httpdispresupuesto.putdispresupuestoInactivar)
 
 export default router

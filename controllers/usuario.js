@@ -73,15 +73,25 @@ putEditarusuario: async (req, res) => {
         res.status(400).json({ error })
     }
 },
-deleteusuario: async (req, res) => {
+putusuarioInactivar: async (req, res) => {
     try {
-        const { id } = req.params
-        const usuarios = await Usuario.findByIdAndDelete(id)
-        res.json({usuarios})
+      const { id } = req.params;
+      const usuario = await Usuario.findByIdAndUpdate(id, { estado: 0 }, { new: true });
+      res.json({ usuario });
     } catch (error) {
-        res.status(400).json({ error })
+      res.status(400).json({ error });
     }
-},
+  },
+
+  putusuarioActivar: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const usuario = await Usuario.findByIdAndUpdate(id, { estado: 1 }, { new: true });
+      res.json({ usuario });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
 
 login: async (req, res) => {
     const { usuario, password } = req.body;

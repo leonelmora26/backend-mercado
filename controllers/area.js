@@ -70,24 +70,23 @@ const httparea = {
       res.status(400).json({ error })
     }
   },
-  deletearea: async (req, res) => {
+  putareaInactivar: async (req, res) => {
     try {
-      const { nombre } = req.params
-      const area = await Area.findOneAndDelete({ nombre })
-      res.json({ msg: "area eliminada" })
+      const { id } = req.params;
+      const area = await Area.findByIdAndUpdate(id, { estado: 0 }, { new: true });
+      res.json({ area });
     } catch (error) {
-      res.status(400).json({ error })
+      res.status(400).json({ error });
     }
-  
   },
-  
-  deleteFichaNumero: async () => {
+
+  putareaActivar: async (req, res) => {
     try {
-      const { ficha } = req.params
-      const area = await Area.findOneAndDelete(ficha)
-      res.json({ msg: "ficha eliminada del area" })
+      const { id } = req.params;
+      const area = await Area.findByIdAndUpdate(id, { estado: 1 }, { new: true });
+      res.json({ area });
     } catch (error) {
-      res.status(400).json({ error })
+      res.status(400).json({ error });
     }
   },
 };

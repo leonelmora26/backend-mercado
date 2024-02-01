@@ -41,15 +41,26 @@ putEditaritems_pre: async (req, res) => {
         res.status(400).json({ error })
     }
 },
-deleteitems_pre: async (req, res) => {
+putitempresupuestoInactivar: async (req, res) => {
     try {
-        const { id } = req.params
-        const items = await Items_presupuesto.findByIdAndDelete(id)
-        res.json({items})
+      const { id } = req.params;
+      const itempresupuesto = await Items_presupuesto.findByIdAndUpdate(id, { estado: 0 }, { new: true });
+      res.json({ itempresupuesto });
     } catch (error) {
-        res.status(400).json({ error })
+      res.status(400).json({ error });
     }
-},
+  },
+
+  putitempresupuestoActivar: async (req, res) => {
+    try {
+      const { id } = req.params;
+      const itempresupuesto = await Items_presupuesto.findByIdAndUpdate(id, { estado: 1 }, { new: true });
+      res.json({ itempresupuesto });
+    } catch (error) {
+      res.status(400).json({ error });
+    }
+  },
+
 }
 
 export default httpitems_pre
