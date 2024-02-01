@@ -25,16 +25,13 @@ router.get("/buscarid/:id", [
 router.post(
   "/agregar",
   [
-    check("nombre", "El nombre de ficha obligatorio").notEmpty(),
-    check("nombre", "El nombre debe tener maximo 8 letras").isLength({
-      min: 4,
-    }),
-    check("numero", "El numero de la ficha debe ser obligatorio").notEmpty(),
-    check("numero", "El numero de la ficha debe tener 7 digitos").isLength({
-      max: 7,
-    }),
+    check('fechaCreacion', "Digite la fecha de creación").not().isEmpty(),
+    check('fechaEntrega', "Digite la fecha de entrega").not().isEmpty(),
+    check('idDistribucionLoteFicha', "Digite el ID de DistribucionLoteFicha").not().isEmpty(),
+    check('idDistribucionLoteFicha', "No es un Mongo ID válido").isMongoId(),
+    check('idInstructorEncargado', "Digite el ID de InstructorEncargado").not().isEmpty(),
+    check('idInstructorEncargado', "No es un Mongo ID válido").isMongoId(),
     validarCampos,
-    //   ],
   ],
   httppedido.postpedido
 );
