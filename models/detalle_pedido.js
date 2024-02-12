@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 
 const detalle_pedido = new Schema({
   cantidad: { type: Number, required: true },
+  subtotal: {type:Number, require:true},
   idpedido: { type: mongoose.Schema.Types.ObjectId,ref:'pedido', required: true },
   idproducto: { type: mongoose.Schema.Types.ObjectId,ref: 'producto', require: true},
   estado:{type: Boolean, default:1},
