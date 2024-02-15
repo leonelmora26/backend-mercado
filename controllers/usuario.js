@@ -104,7 +104,9 @@ login: async (req, res) => {
             })
         }
 
-        if (usuarios.estado === 0) {
+        console.log(usuarios);
+
+        if (usuarios.estado === false) {    
             return res.status(400).json({
                 msg: "usuarios Inactivo"
             })
@@ -113,7 +115,7 @@ login: async (req, res) => {
         const validPassword = bcryptjs.compareSync(password, usuarios.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: "password no son correctos"
+                msg: "usuarios / password no son correctos"
             })
         }
 
