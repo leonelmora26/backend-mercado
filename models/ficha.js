@@ -6,9 +6,10 @@ const ficha = new Schema({
   codigo_ficha: { type: Number, require: true, maxlength: 7 },
   nombre: { type: String, unique:true, require: true},
   nivel_de_formacion: {type: String, require: true},
-  fecha_inicio: { type: Date, default: Date.now },
-  ficha_fin: { type: Date, default: Date.now },
+  fecha_inicio: { type: Date, require: true},
+  ficha_fin: { type: Date, require: true},
   estado : { type: Boolean, default:1},
+  createAT: { type: Date, default: Date.now}
 });
 
 export default mongoose.model("ficha", ficha);
