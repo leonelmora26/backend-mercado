@@ -3,7 +3,7 @@ import Pedido from "../models/pedido.js";
 const httppedido = {
   getpedido: async (req, res) => {
     try {
-      const pedido = await Pedido.find()
+      const pedido = await Pedido.find().populate("idDistribucionLoteFicha").populate("idInstructorEncargado");
       res.json({ pedido })
     } catch (error) {
       res.status(400).json({ error })
