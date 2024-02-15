@@ -27,7 +27,6 @@ router.post(
 
 router.put("/editar/:id", [
   check("nombre", "Deseas cambiar el nombre").notEmpty(),
-  check("numero", "Deseas cambiar el numero de ficha").notEmpty(),
   validarCampos
 ], httpFicha.putFicha);
 
