@@ -17,6 +17,10 @@ router.post('/agregar',[
     validarCampos
 ],httpitems_pre.postAgregaritems_pre );
 router.put('/itemns/:id',[
+    check("nombre", "el nombre es obligatorio").not().isEmpty(),
+    check("presupuesto", "el presupuesto es obligatorio").not().isEmpty(),
+    check("año", "el año es obligatorio").not().isEmpty(),
+    validarCampos
 ], httpitems_pre.putEditaritems_pre);
 router.put('/inactivar/:id', httpitems_pre.putitempresupuestoInactivar),
 router.put('/activar/:id', httpitems_pre.putitempresupuestoActivar)
