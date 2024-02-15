@@ -3,7 +3,7 @@ import Pedido from "../models/pedido.js";
 const httppedido = {
   getpedido: async (req, res) => {
     try {
-      const pedido = await Pedido.find()
+      const pedido = await Pedido.find().populate("idficha").populate("idInstructorEncargado");
       res.json({ pedido })
     } catch (error) {
       res.status(400).json({ error })
@@ -25,8 +25,8 @@ const httppedido = {
 
   postpedido: async (req, res) => {
     try {
-      const { fechacreacion, fechaentrega, idDistribucionLoteFicha, idInstructorEncargado, subtotal, total, estado, createAd } = req.body
-      const pedido = new Pedido({ fechacreacion, fechaentrega, idDistribucionLoteFicha, idInstructorEncargado, subtotal, total, estado, createAd })
+      const { fechacreacion, idficha, idInstructorEncargado, total, estado, createAd } = req.body
+      const pedido = new Pedido({ fechacreacion, idficha, idInstructorEncargado,total, estado, createAd })
       await pedido.save()
       res.json({ pedido })
     } catch (error) {
