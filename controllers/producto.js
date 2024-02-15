@@ -51,8 +51,8 @@ postAgregarproducto: async (req, res) => {
 putproducto: async (req, res) => {
     try {
         const { id } = req.params
-        const { nombre, descripcion, unidadMedida, precioUnitario, iva, consumible} = req.body
-        const productos = await Producto.findByIdAndUpdate(id,{ nombre, descripcion, unidadMedida, precioUnitario, iva, consumible}, { new: true })
+        const { nombre, codigo, descripcion, unidadMedida, precioUnitario, iva, consumible} = req.body
+        const productos = await Producto.findByIdAndUpdate(id,{ nombre, codigo, descripcion, unidadMedida, precioUnitario, iva, consumible}, { new: true })
         await productos.save()
         res.json({ productos })
     } catch (error) {
