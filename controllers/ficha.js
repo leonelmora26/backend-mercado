@@ -63,8 +63,8 @@ const httpFicha = {
   putFicha: async (req, res) => {
     try {
       const { id } = req.params
-      const { nombre } = req.body
-      const ficha = await Ficha.findByIdAndUpdate(id, { nombre }, { new: true });
+      const { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, ficha_fin } = req.body
+      const ficha = await Ficha.findByIdAndUpdate(id, { codigo_ficha, nombre, nivel_de_formacion, fecha_inicio, ficha_fin }, { new: true });
       res.json({ ficha })
     } catch (error) {
       res.status(400).json({ error })
