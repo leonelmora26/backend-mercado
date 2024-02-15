@@ -18,7 +18,7 @@ router.post(
   "/guardar",
   [
     check("nombre", "El nombre de lote es obligatorio").notEmpty(),
-    check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
+    check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 4}), 
     check("presupuesto", "Debe tener su presupuesto asignado").notEmpty(),
     check("presupuesto", "Ingresa un presupuesto a asignar").isNumeric().withMessage("El presupuesto debe ser un número."),
 
