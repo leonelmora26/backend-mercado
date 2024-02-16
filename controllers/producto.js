@@ -1,5 +1,5 @@
 import Producto from "../models/producto.js";
-import { checkExistingProductCode } from "../helpers/helpers.js";
+import { checkExistingProductCode } from "../helpers/producto.js";
 
 const httpproducto = {
 getproducto: async (req, res) => {
