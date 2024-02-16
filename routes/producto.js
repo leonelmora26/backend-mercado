@@ -28,7 +28,12 @@ router.post('/agregar',[
     validarCampos
 ],httpproducto.postAgregarproducto );
 router.put('/producto/:id',[
-], httpproducto.putproducto);
+    check("nombre", "El nombre es obligatorio").not().isEmpty(),
+    check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
+    check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
+    check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
+    check("iva", "El iva es obligatorio").not().isEmpty(),
+    check("consumible", "El dato de si es consumible es obligatorio").not().isEmpty(),], httpproducto.putproducto);
 router.put("/inactivar/:id", httpproducto.putproductoInactivar); 
 
 router.put("/activar/:id", httpproducto.putproductoActivar); 
