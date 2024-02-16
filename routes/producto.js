@@ -2,7 +2,7 @@ import { Router } from "express";
 import httpproducto from "../controllers/producto.js";
 import { check } from "express-validator";
 import {validarCampos} from "../middelwares/validator.js";
-import { checkExistingProductCode } from "../helpers/producto.js"; // Importa la función de verificación
+import helpersProducto from "../helpers/producto.js"; // Importa la función de verificación
 
 const router=new Router()
 
@@ -20,6 +20,8 @@ router.get('/producto/:unidadMedida',[
     validarCampos
 ], httpproducto.getproductounimedida)
 router.post('/agregar',[
+    check("codigo", "el codigo es obligatorio").not().isEmpty(),
+    check("codigo", "el codigo ya esta").custom(helpersProducto.checkExistingProductCode),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
@@ -30,21 +32,16 @@ router.post('/agregar',[
 ],httpproducto.postAgregarproducto );
 router.put('/producto/:id',[
     check("codigo", "el codigo es obligatorio").not().isEmpty(),
-    check("codigo").custom(async (codigo) => {
-        // Verificar si el código del producto ya existe
-        const exists = await checkExistingProductCode(codigo);
-        if (exists) {
-            throw new Error("El código de producto ya está en uso");
-        }
-        // Si el código no existe, retorna true
-        return true;
-    }),
+    check("codigo").custom(helpersProducto.checkExistingProductCode),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
     check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
     check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
     check("iva", "El iva es obligatorio").not().isEmpty(),
-    check("consumible", "El dato de si es consumible es obligatorio").not().isEmpty(),], httpproducto.putproducto);
+    check("consumible", "El dato de si es consumible es obligatorio").not().isEmpty(),
+    validarCampos,
+], httpproducto.putproducto);
+    
 router.put("/inactivar/:id", httpproducto.putproductoInactivar); 
 
 router.put("/activar/:id", httpproducto.putproductoActivar); 

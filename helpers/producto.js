@@ -1,12 +1,21 @@
 import Producto from "../models/producto.js";
 
-export const checkExistingProductCode = async (codigo) => {
-  try {
-    const existingProduct = await Producto.findOne({ codigo });
-    return !!existingProduct; 
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
+const helpersProducto ={
+    checkExistingProductCode: async (codigo, req) => {
+         const existingProduct = await Producto.findOne({ codigo });
 
-export default checkExistingProductCode
+         const {_id } = req.req.body
+         console.log(req.req.body);
+         if (existingProduct) {
+            if (existingProduct._id != _id && req.req.method === "PUT")
+              throw new Error("el codigo ya esta registrado en la base de datos.");
+            else if (req.req.method === "POST")
+              throw new Error("el codigo ya esta registrado en la base de datos.");
+          }
+      
+    
+      }
+}
+
+
+export default helpersProducto
