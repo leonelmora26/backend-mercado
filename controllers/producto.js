@@ -1,4 +1,5 @@
 import Producto from "../models/producto.js";
+import { checkExistingProductCode } from "../helpers/helpers.js";
 
 const httpproducto = {
 getproducto: async (req, res) => {
@@ -38,15 +39,17 @@ getproductounimedida: async (req, res) =>{
 },
 postAgregarproducto: async (req, res) => {
     try {
-        const { codigo, nombre, descripcion, unidadMedida, precioUnitario, iva, consumible } = req.body
-        const productos = new Producto({codigo, nombre, descripcion, unidadMedida, precioUnitario, iva, consumible})
-        
-        await productos.save()
-        res.json({ productos })
+        const { codigo, nombre, descripcion, unidadMedida, precioUnitario, iva, consumible } = req.body;
+        const isExistingCode = await checkExistingProductCode(codigo);
+        if (isExistingCode) {
+          return res.status(400).json({ error: "El código de producto ya está en uso" });
+        }
+        const productos = new Producto({codigo, nombre, descripcion, unidadMedida, precioUnitario, iva, consumible});
+        await productos.save();
+        res.json({ productos });
     } catch (error) {
-        res.status(400).json({ error })
+        res.status(400).json({ error: error.message });
     }
-
 },
 putproducto: async (req, res) => {
     try {
