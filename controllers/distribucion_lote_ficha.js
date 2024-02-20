@@ -3,7 +3,7 @@ import Distribucion_lote_ficha from "../models/distribucion_lote_ficha.js";
 const httpDistribucion_lote_ficha = {
     getAllDistribucion_lote_ficha: async (req, res) => {
         try {
-            const dis_lote_ficha = await Distribucion_lote_ficha.find();
+            const dis_lote_ficha = await Distribucion_lote_ficha.find().populate("idficha").populate("idDistribucionPresupuesto");
 
             if (dis_lote_ficha.length === 0) {
                 res.json({ msg: "no hay distribucion lote ficha" });
@@ -31,8 +31,8 @@ const httpDistribucion_lote_ficha = {
 
     postAgregarDistribucion_lote_ficha: async (req, res) => {
         try {
-            const { nombre, ficha } = req.body;
-            const distribucion_lote_fichas = new Distribucion_lote_ficha({ nombre, ficha });
+            const {presupuesto,  idficha, idDistribucionPresupuesto } = req.body;
+            const distribucion_lote_fichas = new Distribucion_lote_ficha({ presupuesto, presupuestoDisponible:presupuesto, idficha, idDistribucionPresupuesto });
 
             await distribucion_lote_fichas.save();
             res.json({ distribucion_lote_fichas });
@@ -44,11 +44,9 @@ const httpDistribucion_lote_ficha = {
     putEditarDistribucion_lote_ficha: async (req, res) => {
         try {
             const { id } = req.params;
-            const { nombre, ficha } = req.body;
+            const { presupuesto, presupuestoDisponible, idficha, idDistribucionPresupuesto } = req.body;
             const distribucion_lote_fichas = await Distribucion_lote_ficha.findByIdAndUpdate(
-                id,
-                { nombre, ficha },
-                { new: true }
+                presupuesto, presupuestoDisponible, idficha, idDistribucionPresupuesto
             );
             res.json({ distribucion_lote_fichas });
         } catch (error) {
