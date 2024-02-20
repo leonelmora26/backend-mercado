@@ -21,7 +21,7 @@ getitemspreid: async (req, res) =>{
 postAgregaritems_pre: async (req, res) => {
     try {
         const { nombre, presupuesto, año } = req.body
-        const items = new Items_presupuesto({nombre, presupuesto, año})
+        const items = new Items_presupuesto({nombre, presupuesto,presupuestoDisponible:presupuesto, año})
         
         await items.save()
         res.json({ items })
