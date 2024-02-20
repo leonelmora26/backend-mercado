@@ -4,7 +4,7 @@ const httpdispresupuesto = {
     
 getdispresupuesto: async (req, res) => {
     try {
-        const dispresupuesto = await Dispresupuesto.find().populate("lote_nombre").populate("item_presupuesto").populate("item_nombre")
+        const dispresupuesto = await Dispresupuesto.find().populate("id_lote").populate("id_item")
         res.json({dispresupuesto})
     } catch (error) {
         res.status(400).json({error})
@@ -21,8 +21,8 @@ getdispresupuestopreid: async (req, res) =>{
 },
 postAgregardispresupuesto: async (req, res) => {
     try {
-        const { presupuesto, lote_nombre, item_presupuesto,item_nombre } = req.body
-        const dispresupuestos = new Dispresupuesto({presupuesto, lote_nombre, item_presupuesto,item_nombre })
+        const { presupuesto, id_lote, id_item, } = req.body
+        const dispresupuestos = new Dispresupuesto({presupuesto, presupuestoDisponible:presupuesto, id_lote, id_item, })
         
         await dispresupuestos.save()
         res.json({ dispresupuestos })
@@ -34,8 +34,8 @@ postAgregardispresupuesto: async (req, res) => {
 putEditardispresupuestos_pre: async (req, res) => {
     try {
         const { id } = req.params
-        const {presupuesto,lote_nombre, item_presupuesto,item_nombre } = req.body
-        const dispresupuestos = await Dispresupuesto.findByIdAndUpdate(id,{presupuesto, lote_nombre, item_presupuesto,item_nombre }, { new: true })
+        const {presupuesto,id_lote, id_item, } = req.body
+        const dispresupuestos = await Dispresupuesto.findByIdAndUpdate(id,{presupuesto, presupuestoDisponible:presupuesto, id_lote, id_item, }, { new: true })
         await dispresupuestos.save()
         res.json({ dispresupuestos })
     } catch (error) {

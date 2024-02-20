@@ -1,9 +1,9 @@
-import Items_presupuesto from "../models/items_presupuesto.js";
+import ItemsPresupuesto from "../models/items_presupuesto.js";
 
 const httpitems_pre = {
 getitems_pre: async (req, res) => {
     try {
-        const item = await Items_presupuesto.find()
+        const item = await ItemsPresupuesto.find()
         res.json({item})
     } catch (error) {
         res.status(400).json({error})
@@ -12,7 +12,7 @@ getitems_pre: async (req, res) => {
 getitemspreid: async (req, res) =>{
     const { nombre } = req.params
     try {
-        const item = await Items_presupuesto.find({ nombre })
+        const item = await ItemsPresupuesto.find({ nombre })
         res.json({ item })
     } catch (error) {
         res.json({ error })
@@ -21,7 +21,7 @@ getitemspreid: async (req, res) =>{
 postAgregaritems_pre: async (req, res) => {
     try {
         const { nombre, presupuesto, año } = req.body
-        const items = new Items_presupuesto({nombre, presupuesto,presupuestoDisponible:presupuesto, año})
+        const items = new ItemsPresupuesto({nombre, presupuesto,presupuestoDisponible:presupuesto, año})
         
         await items.save()
         res.json({ items })
@@ -34,7 +34,7 @@ putEditaritems_pre: async (req, res) => {
     try {
         const { id } = req.params
         const {nombre, presupuesto, año} = req.body
-        const items = await Items_presupuesto.findByIdAndUpdate(id,{nombre, presupuesto, año}, { new: true })
+        const items = await ItemsPresupuesto.findByIdAndUpdate(id,{nombre, presupuesto, presupuestoDisponible:presupuesto, año}, { new: true })
         await items.save()
         res.json({ items })
     } catch (error) {
@@ -44,7 +44,7 @@ putEditaritems_pre: async (req, res) => {
 putitempresupuestoInactivar: async (req, res) => {
     try {
       const { id } = req.params;
-      const itempresupuesto = await Items_presupuesto.findByIdAndUpdate(id, { estado: 0 }, { new: true });
+      const itempresupuesto = await ItemsPresupuesto.findByIdAndUpdate(id, { estado: 0 }, { new: true });
       res.json({ itempresupuesto });
     } catch (error) {
       res.status(400).json({ error });
@@ -54,7 +54,7 @@ putitempresupuestoInactivar: async (req, res) => {
   putitempresupuestoActivar: async (req, res) => {
     try {
       const { id } = req.params;
-      const itempresupuesto = await Items_presupuesto.findByIdAndUpdate(id, { estado: 1 }, { new: true });
+      const itempresupuesto = await ItemsPresupuesto.findByIdAndUpdate(id, { estado: 1 }, { new: true });
       res.json({ itempresupuesto });
     } catch (error) {
       res.status(400).json({ error });
