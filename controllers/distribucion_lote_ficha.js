@@ -44,9 +44,9 @@ const httpDistribucion_lote_ficha = {
     putEditarDistribucion_lote_ficha: async (req, res) => {
         try {
             const { id } = req.params;
-            const { presupuesto, presupuestoDisponible, idficha, idDistribucionPresupuesto } = req.body;
+            const { presupuesto, idficha, idDistribucionPresupuesto } = req.body;
             const distribucion_lote_fichas = await Distribucion_lote_ficha.findByIdAndUpdate(
-                presupuesto, presupuestoDisponible, idficha, idDistribucionPresupuesto
+                presupuesto, idficha, idDistribucionPresupuesto
             );
             res.json({ distribucion_lote_fichas });
         } catch (error) {
