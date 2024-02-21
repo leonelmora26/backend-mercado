@@ -18,23 +18,8 @@ const httpLote = {
 
   getLoteNombre: async (req, res) => {
     try {
-      const { nombre } = req.params;
-      const lote = await Lote.findOne({ nombre });
-
-      if (!lote) {
-        res.json({ msg: "Lote no encontrado" });
-      } else {
-        res.json({ lote });
-      }
-    } catch (error) {
-      res.status(400).json({ error });
-    }
-  },
-
-  getLotePresupuesto: async (req, res) => {
-    try {
-      const { presupuesto } = req.params;
-      const lote = await Lote.findById(presupuesto);
+      const { codigo } = req.params;
+      const lote = await Lote.findOne({ codigo });
 
       if (!lote) {
         res.json({ msg: "Lote no encontrado" });
@@ -63,8 +48,8 @@ const httpLote = {
 
   postLote: async (req, res) => {
     try {
-      const { nombre, presupuesto } = req.body;
-      const lote = new Lote({ nombre, presupuesto });
+      const { nombre, codigo } = req.body;
+      const lote = new Lote({ nombre, codigo });
 
       await lote.save();
 
@@ -78,8 +63,8 @@ const httpLote = {
   putLote: async (req, res) => {
     try {
       const { id } = req.params;
-      const { nombre, presupuesto } = req.body;
-      const lote = await Lote.findByIdAndUpdate(id, { nombre, presupuesto }, { new: true });
+      const { nombre, codigo } = req.body;
+      const lote = await Lote.findByIdAndUpdate(id, { nombre, codigo }, { new: true });
       res.json({ lote });
     } catch (error) {
       res.status(400).json({ error });
@@ -106,16 +91,6 @@ const httpLote = {
     }
   },
 
-  // DELETE
-  deleteLote: async (req, res) => {
-    try {
-      const { nombre } = req.params;
-      const lote = await Lote.findOneAndDelete({ nombre });
-      res.json({ msg: "Lote eliminado" });
-    } catch (error) {
-      res.status(400).json({ error });
-    }
-  },
 
 };
 
