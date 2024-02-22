@@ -6,7 +6,7 @@ const httpdispresupuesto = {
     
 getdispresupuesto: async (req, res) => {
     try {
-        const dispresupuesto = await Dispresupuesto.find().populate("lote_nombre").populate("item_presupuesto").populate("item_nombre")
+        const dispresupuesto = await Dispresupuesto.find().populate("id_lote").populate("id_item")
         res.json({dispresupuesto})
     } catch (error) {
         res.status(400).json({error})
