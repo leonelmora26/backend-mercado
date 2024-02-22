@@ -2,6 +2,7 @@ import { Router } from "express";
 import httpLote from "../controllers/lote.js";
 import { check } from "express-validator";
 import { validarCampos  } from "../middelwares/validator.js";
+import helpersLote from "../helpers/lote.js";
 
 
 const router = new Router();
@@ -14,8 +15,9 @@ router.get("/Lote/:id", httpLote.getLoteId);
 router.post(
   "/guardar",
   [
-    check("nombre", "El nombre de lote es obligatorio").notEmpty(),
-    check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 4}), 
+    check("nombre", "El nombre de lote es obligatorio").not().isEmpty(),
+    check("codigo", "El codigo de lote es obligatorio").not().isEmpty(),
+    check("codigo", "El codigo de lote es obligatorio").custom(helpersLote.checkExistingLotetCode),
     validarCampos 
   ],
   httpLote.postLote 
@@ -23,7 +25,8 @@ router.post(
 
 router.put("/editar/:id", [
   check("nombre", "Deseas cambiar el nombre").notEmpty(),
-  check("nombre", "El nombre debe tener minimo 8 letras").isLength({ min: 8}), 
+  check("codigo", "El codigo de lote es obligatorio").not().isEmpty(),
+  check("codigo", "El codigo de lote es obligatorio").custom(helpersLote.checkExistingLotetCode),
 validarCampos 
 ], httpLote.putLote); 
 router.put("/inactivar/:id", httpLote.putLoteInactivar); 
