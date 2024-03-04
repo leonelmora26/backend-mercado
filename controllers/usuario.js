@@ -51,6 +51,7 @@ registroUsuario: async (req, res) => {
         nombre,
         cedula,
         telefono,
+        correo,
         usuario,
         password,
         rol,
@@ -59,6 +60,7 @@ registroUsuario: async (req, res) => {
         nombre,
         cedula,
         telefono,
+        correo,
         usuario,
         password,
         rol,
@@ -76,8 +78,8 @@ registroUsuario: async (req, res) => {
 putEditarusuario: async (req, res) => {
     try {
         const { id } = req.params
-        const {nombre, apellido, telefono, usuario , password} = req.body
-        const usuarios = await Usuario.findByIdAndUpdate(id,{nombre, apellido, telefono, usuario , password}, { new: true })
+        const {nombre, apellido, telefono, correo, usuario , password} = req.body
+        const usuarios = await Usuario.findByIdAndUpdate(id,{nombre, apellido, telefono, correo, usuario , password}, { new: true })
         const salt = bcryptjs.genSaltSync();
         usuarios.password = bcryptjs.hashSync(password, salt)
         await usuarios.save()

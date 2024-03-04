@@ -20,9 +20,9 @@ const helpersUsuario = {
     console.log(req.req.body);
     if (existUsuarioo) {
        if (existUsuarioo._id != _id && req.req.method === "PUT")
-         throw new Error("El usuario ya esta registrada en la base de datos.");
+         throw new Error("El nombre de usuario ya esta registrada en la base de datos.");
        else if (req.req.method === "POST")
-         throw new Error("El usuario ya esta registrada en la base de datos.");
+         throw new Error("El nombre de usuario ya esta registrada en la base de datos.");
      }
   }
 };
