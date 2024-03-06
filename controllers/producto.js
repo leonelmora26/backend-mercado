@@ -38,9 +38,9 @@ getproductounimedida: async (req, res) =>{
 },
 postAgregarproducto: async (req, res) => {
     try {
-        const { codigo, nombre, descripcion, unidadMedida, precioUnitario, iva, } = req.body;
+        const { codigo, nombre, descripcion, unidadMedida, precioUnitario, id_contrato, id_lote, iva, } = req.body;
 
-        const productos = new Producto({codigo, nombre, descripcion, unidadMedida, precioUnitario, iva,});
+        const productos = new Producto({codigo, nombre, descripcion, unidadMedida, precioUnitario, id_contrato, id_lote, iva,});
         await productos.save();
         res.json({ productos });
     } catch (error) {
@@ -50,8 +50,8 @@ postAgregarproducto: async (req, res) => {
 putproducto: async (req, res) => {
     try {
         const { id } = req.params
-        const { nombre, codigo, descripcion, unidadMedida, precioUnitario, iva,} = req.body
-        const productos = await Producto.findByIdAndUpdate(id,{ nombre, codigo, descripcion, unidadMedida, precioUnitario, iva,}, { new: true })
+        const { nombre, codigo, descripcion, unidadMedida, precioUnitario, id_contrato, id_lote, iva,} = req.body
+        const productos = await Producto.findByIdAndUpdate(id,{ nombre, codigo, descripcion, unidadMedida, precioUnitario, id_contrato, id_lote, iva,}, { new: true })
         await productos.save()
         res.json({ productos })
     } catch (error) {

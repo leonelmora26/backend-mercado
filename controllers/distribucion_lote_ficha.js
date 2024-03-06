@@ -1,4 +1,4 @@
-import Distribucion_lote_ficha from "../models/distribucion_lote_ficha.js";
+import Distribucion_lote_ficha from "../models/distribucion_depen_red.js";
 
 const httpDistribucion_lote_ficha = {
     getAllDistribucion_lote_ficha: async (req, res) => {

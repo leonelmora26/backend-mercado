@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-const Area = new mongoose.Schema(
+const Red = new mongoose.Schema(
     {
         nombre: {type: String, require:true},
         createAd: {type:Date, default:Date.now},
@@ -8,4 +8,4 @@ const Area = new mongoose.Schema(
     }
 )
 
-export default mongoose.model("Area", Area)
+export default mongoose.model("Red", Red)

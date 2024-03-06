@@ -26,6 +26,8 @@ router.post('/agregar',[
     check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
     check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
+    check("id_lote", "El lote es obligatorio").not().isEmpty(),
+    check("id_contrato", "El contrato es obligatorio").not().isEmpty(),
     check("iva", "El iva es obligatorio").not().isEmpty(),
     validarCampos
 ],httpproducto.postAgregarproducto );
@@ -36,6 +38,8 @@ router.put('/producto/:id',[
     check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
     check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
+    check("id_lote", "El lote es obligatorio").not().isEmpty(),
+    check("id_contrato", "El contrato es obligatorio").not().isEmpty(),
     check("iva", "El iva es obligatorio").not().isEmpty(),
     validarCampos,
 ], httpproducto.putproducto);

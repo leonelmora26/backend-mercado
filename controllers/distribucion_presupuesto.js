@@ -1,6 +1,6 @@
 import Dispresupuesto from "../models/distribucion_presupuesto.js";
 import Lote from '../models/lote.js'
-import Item from '../models/items_presupuesto.js'
+import Item from '../models/contrato.js'
 
 const httpdispresupuesto = {
     
