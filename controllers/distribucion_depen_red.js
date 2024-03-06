@@ -1,4 +1,4 @@
-import Distribucion_depen_red from "../models/distribucion_depen_red"
+import Distribucion_depen_red from "../models/distribucion_depen_red.js"
 
 const httpdistri_depenred = {
 getdistri_depenred: async (req, res) => {
