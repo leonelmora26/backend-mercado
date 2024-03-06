@@ -125,24 +125,24 @@ login: async (req, res) => {
             })
         }
 
-        const validPassword = bcryptjs.compareSync(password, Usuario.password);
-        if (!validPassword) {
-            return res.status(401).json({
-                msg: "Usuario / password no son correctos"
-            })
-        }
+        // const validPassword = bcryptjs.compareSync(password, Usuario.password);
+        // if (!validPassword) {
+        //     return res.status(401).json({
+        //         msg: "Usuario / password no son correctos"
+        //     })
+        // }
 
-        const token = await generarJWT(Usuario.id);
+        // const token = await generarJWT(Usuario.id);
 
-        res.json({
-            Usuario,
-            token
-        })
+        // res.json({
+        //     Usuario,
+        //     token
+        // })
 
     } catch (error) {
-        return res.status(500).json({
-            msg: "Hable con el WebMaster"
-        })
+        // return res.status(500).json({
+        //     msg: "Hable con el WebMaster"
+        // })
     }
 },
 
