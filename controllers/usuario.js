@@ -36,10 +36,10 @@ getusuariocedula: async (req, res) =>{
 /* postAgregarusuario: async (req, res) => {
     try {
         const { nombre, cedula, telefono, usuario, password, rol } = req.body
-        const usuarios = new Usuario({nombre, cedula, telefono, usuario, password, rol})
+        const Usuario = new Usuario({nombre, cedula, telefono, usuario, password, rol})
         
-        await usuarios.save()
-        res.json({ usuarios })
+        await Usuario.save()
+        res.json({ Usuario })
     } catch (error) {
         res.status(400).json({ error: "cara de verga" })
     }
@@ -51,26 +51,24 @@ registroUsuario: async (req, res) => {
         nombre,
         cedula,
         telefono,
-        correo,
         usuario,
         password,
         rol,
       } = req.body;
-      const usuarios = new Usuario({
+      const Usuario = new Usuario({
         nombre,
         cedula,
         telefono,
-        correo,
         usuario,
         password,
         rol,
       });
       const salt = bcryptjs.genSaltSync();
-      usuarios.password = bcryptjs.hashSync(password, salt);
+      Usuario.password = bcryptjs.hashSync(password, salt);
 
-      await usuarios.save();
+      await Usuario.save();
 
-      res.json({ usuarios });
+      res.json({ Usuario });
     } catch (error) {
       res.status(400).json({ error });
     }
@@ -78,12 +76,12 @@ registroUsuario: async (req, res) => {
 putEditarusuario: async (req, res) => {
     try {
         const { id } = req.params
-        const {nombre, apellido, telefono, correo, usuario , password} = req.body
-        const usuarios = await Usuario.findByIdAndUpdate(id,{nombre, apellido, telefono, correo, usuario , password}, { new: true })
+        const {nombre, apellido, telefono, usuario , password} = req.body
+        const Usuario = await Usuario.findByIdAndUpdate(id,{nombre, apellido, telefono, usuario , password}, { new: true })
         const salt = bcryptjs.genSaltSync();
-        usuarios.password = bcryptjs.hashSync(password, salt)
-        await usuarios.save()
-        res.json({ usuarios })
+        Usuario.password = bcryptjs.hashSync(password, salt)
+        await Usuario.save()
+        res.json({ Usuario })
     } catch (error) {
         res.status(400).json({ error })
     }
@@ -112,32 +110,32 @@ login: async (req, res) => {
     const { usuario, password } = req.body;
 
     try {
-        const usuarios = await Usuario.findOne({ usuario })
-        if (!usuarios) {
+        const Usuario = await Usuario.findOne({ usuario })
+        if (!Usuario) {
             return res.status(400).json({
-                msg: "usuarios / Password no son correctos"
+                msg: "Usuario / Password no son correctos"
             })
         }
 
-        console.log(usuarios);
+        console.log(Usuario);
 
-        if (usuarios.estado === false) {    
+        if (Usuario.estado === false) {    
             return res.status(400).json({
-                msg: "usuarios Inactivo"
+                msg: "Usuario Inactivo"
             })
         }
 
-        const validPassword = bcryptjs.compareSync(password, usuarios.password);
+        const validPassword = bcryptjs.compareSync(password, Usuario.password);
         if (!validPassword) {
             return res.status(401).json({
-                msg: "usuarios / password no son correctos"
+                msg: "Usuario / password no son correctos"
             })
         }
 
-        const token = await generarJWT(usuarios.id);
+        const token = await generarJWT(Usuario.id);
 
         res.json({
-            usuarios,
+            Usuario,
             token
         })
 
@@ -151,9 +149,9 @@ login: async (req, res) => {
 
 recuperarPassword: async (req, res) => {
     try {
-      const { Correo } = req.body;
+      const { correo } = req.body;
 
-      const usuario = await usuarios.findOne({ Correo });
+      const usuario = await Usuario.findOne({ correo });
 
       if (!usuario)
         return res.status(404).json({ error: "Usuario no encontrado" });
@@ -171,7 +169,7 @@ recuperarPassword: async (req, res) => {
       const  codigo = generarNumeroAleatorio()
       const mailOptions = {
         from: process.env.userEmail,
-        to: Correo,
+        to: correo,
         subject: "Recuperación de Contraseña",
         text:
           "Su codigo es este: " + codigo, 
@@ -250,12 +248,12 @@ nuevaPassword: async (req, res) => {
       if (codigo === codigoGuardado) {
         codigoEnviado = {};
 
-        const usuario = usuarios.findOne({correo});
+        const usuario = Usuario.findOne({correo});
 
         const salt = bcryptjs.genSaltSync();
         const newPassword = bcryptjs.hashSync(password, salt);
 
-        await usuarios.findByIdAndUpdate(
+        await Usuario.findByIdAndUpdate(
           usuario.id,
           { password: newPassword },
           { new: true }
@@ -274,10 +272,6 @@ nuevaPassword: async (req, res) => {
       });
     }
   }
-
-
-
-
 
 
 }
