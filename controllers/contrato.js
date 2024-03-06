@@ -1,4 +1,4 @@
-import ItemsPresupuesto from "../models/items_presupuesto.js";
+import ItemsPresupuesto from "../models/contrato.js";
 
 const httpitems_pre = {
 getitems_pre: async (req, res) => {
