@@ -1,7 +1,6 @@
 import bcryptjs from "bcryptjs"
 import { generarJWT } from "../middelwares/validar.js"
 import Usuario from "../models/usuario.js";
-<<<<<<< HEAD
 import nodemailer from "nodemailer";
 
 
@@ -16,8 +15,6 @@ function generarNumeroAleatorio() {
 
   return numero;
 }
-=======
->>>>>>> d5267f896d7c5141652682747282aa7963202d8c
 const httpusuario = {
 getusuario: async (req, res) => {
     try {
