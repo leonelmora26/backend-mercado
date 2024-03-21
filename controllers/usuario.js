@@ -14,6 +14,7 @@ function generarNumeroAleatorio() {
   
     return numero;
   }
+
 const httpusuario = {
     codigoRecuperar: async (req, res) => {
         try {

@@ -20,8 +20,8 @@ getdependenciaid: async (req, res) =>{
 },
 postAgregardependencia: async (req, res) => {
     try {
-        const { nombre, presupuesto, año , item_presupuesto} = req.body
-        const depen = new dependencia({nombre, presupuesto,presupuestoDisponible:presupuesto, año, item_presupuesto})
+        const { nombre, codigo} = req.body
+        const depen = new dependencia({nombre, codigo})
         
         await depen.save()
         res.json({ depen })
@@ -33,8 +33,8 @@ postAgregardependencia: async (req, res) => {
 putEditardependencia: async (req, res) => {
     try {
         const { id } = req.params
-        const {nombre, presupuesto, año} = req.body
-        const depen = await dependencia.findByIdAndUpdate(id,{nombre, presupuesto, presupuestoDisponible:presupuesto, año}, { new: true })
+        const {nombre, codigo} = req.body
+        const depen = await dependencia.findByIdAndUpdate(id,{nombre, codigo}, { new: true })
         await depen.save()
         res.json({ depen })
     } catch (error) {

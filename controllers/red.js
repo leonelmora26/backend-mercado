@@ -1,10 +1,10 @@
-import Red from "../models/red.js"; // Importa el modelo de ficha
+import Red from "../models/red.js"; 
 
 const httpred = {
   //GET
   getred: async (req, res) => {
     try {
-      const red = await Red.find(); // Cambia la referencia a "cliente" por "area"
+      const red = await Red.find(); 
 
       if (red.length === 0) {
         res.json({ msg: "No hay areas registradas" });
@@ -19,8 +19,7 @@ const httpred = {
   getredid: async (req, res) => {
     try {
       const { id } = req.params;
-      const red = await Red.findOne({ id }); // Cambia la referencia a "cliente" por "red"
-
+      const red = await Red.findOne({ id }); 
       if (!red) {
         res.json({ msg: "red no encontrada" });
       } else {

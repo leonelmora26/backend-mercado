@@ -20,8 +20,8 @@ getdistri_depenredid: async (req, res) =>{
 },
 postAgregardistri_depenred: async (req, res) => {
     try {
-        const { presupuesto, año , iddependencia, idred } = req.body
-        const depen = new Distribucion_depen_red({ presupuesto, presupuestoDisponible:presupuesto, año , iddependencia, idred})
+        const { presupuesto, año , iddistribuciondependencia, idred } = req.body
+        const depen = new Distribucion_depen_red({ presupuesto, presupuestoDisponible:presupuesto, año , iddistribuciondependencia, idred})
         
         await depen.save()
         res.json({ depen })
@@ -33,8 +33,8 @@ postAgregardistri_depenred: async (req, res) => {
 putEditardistri_depenred: async (req, res) => {
     try {
         const { id } = req.params
-        const { presupuesto, año , iddependencia, idred} = req.body
-        const depen = await Distribucion_depen_red.findByIdAndUpdate(id,{ presupuesto, presupuestoDisponible:presupuesto, año , iddependencia, idred}, { new: true })
+        const { presupuesto, año , iddistribuciondependencia, idred} = req.body
+        const depen = await Distribucion_depen_red.findByIdAndUpdate(id,{ presupuesto, presupuestoDisponible:presupuesto, año , iddistribuciondependencia, idred}, { new: true })
         await depen.save()
         res.json({ depen })
     } catch (error) {
