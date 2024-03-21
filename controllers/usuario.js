@@ -1,7 +1,7 @@
 import bcryptjs from "bcryptjs"
 import { generarJWT } from "../middelwares/validar.js"
 import Usuario from "../models/usuario.js";
-import nodemailer from "nodemailer"
+import nodemailer from "nodemailer";
 
 
 let codigoEnviado = {};
