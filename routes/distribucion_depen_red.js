@@ -9,14 +9,14 @@ router.get('/distripenred', httpdistri_depenred.getdistri_depenred)
 router.get('/distripenred/:id', httpdistri_depenred.getdistri_depenredid) 
 router.post('/agregar',[
     check("presupuesto", "la nombre es obligatoria").not().isEmpty(),
-    check("iddependencia", "la iddependencia es obligatoria").not().isEmpty(),
+    check("iddistribuciondependencia", "la iddistribuciondependencia es obligatoria").not().isEmpty(),
     check("idred", "la idred es obligatoria").not().isEmpty(),
     check("año", "la año es obligatoria").not().isEmpty(),
     validarCampos
 ],httpdistri_depenred.postAgregardistri_depenred );
 router.put('/distripenred/:id',[
     check("presupuesto", "la nombre es obligatoria").not().isEmpty(),
-    check("iddependencia", "la iddependencia es obligatoria").not().isEmpty(),
+    check("iddistribuciondependencia", "la iddistribuciondependencia es obligatoria").not().isEmpty(),
     check("idred", "la idred es obligatoria").not().isEmpty(),
     check("año", "la año es obligatoria").not().isEmpty(),
     validarCampos

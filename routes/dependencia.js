@@ -10,13 +10,11 @@ router.get('/dependencia/:id', httpdependencia.getdependenciaid)
 router.post('/agregar',[
     check("nombre", "la nombre es obligatoria").not().isEmpty(),
     check("codigo", "la codigo es obligatoria").not().isEmpty(),
-    check("idcontrato", "la idcontrato es obligatoria").not().isEmpty(),
     validarCampos
 ],httpdependencia.postAgregardependencia );
 router.put('/dependencia/:id',[
     check("nombre", "la nombre es obligatoria").not().isEmpty(),
     check("codigo", "la codigo es obligatoria").not().isEmpty(),
-    check("idcontrato", "la idcontrato es obligatoria").not().isEmpty(),
     validarCampos
 ], httpdependencia.putEditardependencia);
 router.put('/inactivar/:id', httpdependencia.putdependenciaInactivar),

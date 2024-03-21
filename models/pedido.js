@@ -3,6 +3,7 @@ import mongoose from "mongoose"
 const Pedido = new mongoose.Schema(
     {
         fechacreacion: {type: Date, default:Date.now},
+        fechaentrega: {type: Date, require:true},
         idficha:{type:mongoose.Schema.Types.ObjectId,ref:'ficha', require:true},
         idInstructorEncargado: {type:mongoose.Schema.Types.ObjectId,ref:'Usuario', require:true},
         total: {type: Number, require:true},
