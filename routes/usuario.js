@@ -6,16 +6,16 @@ import helpersUsuario from "../helpers/usuario.js";
 const router=new Router()
 
 
-router.post("/recuperar-password", httpusuario.recuperarPassword);
+// router.post("/recuperar-password", httpusuario.recuperarPassword);
 
 
-router.post("/confirmarcodigo/:codigo", httpusuario.confirmarCodigo);
+// router.post("/confirmarcodigo/:codigo", httpusuario.confirmarCodigo);
 
 
-router.put("/nuevaPassword", [
-    check('Correo').custom(helpersUsuario.CorreoExistente2),
-    validarCampos
-], httpusuario.nuevaPassword);
+// router.put("/nuevaPassword", [
+//     check('Correo').custom(helpersUsuario.CorreoExistente2),
+//     validarCampos
+// ], httpusuario.nuevaPassword);
 
 router.get('/usuario', httpusuario.getusuario)
 router.get('/usuario/:cedula',[
