@@ -12,7 +12,6 @@ import lote from "./routes/lote.js";
 import Disdependencia from "./routes/distribucion_dependencia.js"
 import pedido from "./routes/pedido.js"
 import detalle_pedido from "./routes/detalle_pedido.js"
-import distribucion_lote_ficha from "./routes/distribucion_lote_ficha.js";
 import dependencia from "./routes/dependencia.js";
 import disdepenred from "./routes/distribucion_depen_red.js";
 import red from "./routes/red.js";
@@ -36,7 +35,6 @@ app.use(   "/pedido", pedido)
 app.use(   "/lote", lote)
 app.use(   "/disdependencia", Disdependencia)
 app.use(   "/detalle_pedido", detalle_pedido)
-app.use(   "/disloteficha", distribucion_lote_ficha )
 
 mongoose.connect(process.env.mongoDB)
   .then(() => console.log('Connected!'));
