@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const Schema = mongoose.Schema;
 
-const detalle_pedido = new Schema({
+const Detalle_pedido = new Schema({
   cantidad: { type: Number, required: true },
   subtotal: {type:Number, require:true},
   idpedido: { type: mongoose.Schema.Types.ObjectId,ref:'pedido', required: true },
@@ -12,4 +12,4 @@ const detalle_pedido = new Schema({
 
 });
 
-export default mongoose.model("detalle_pedido", detalle_pedido)
+export default mongoose.model("Detalle_pedido", Detalle_pedido)
