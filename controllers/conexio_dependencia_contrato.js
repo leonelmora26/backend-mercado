@@ -1,5 +1,5 @@
 import Conexio_dependencia_contrato from "../models/conexio_dependencia_contrato.js"
-
+ 
 const httpconexion_dependencia_contrato = {
 getconexion_dependencia_contrato: async (req, res) => {
     try {
