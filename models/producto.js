@@ -2,17 +2,14 @@ import mongoose from "mongoose"
 
 const Producto = new mongoose.Schema(
     {
-        codigo: {type: String, require:true},
+        codigo: {type: String, require:true, unique:true},
         nombre: {type:String, require:true},
-        descripcion: {type:String, require:true},
-        unidadMedida: {type:String, require:true},
+        local: {type:String,  enum : ["D1", "ARA","DolarCity","otro"],require:true},
+        cantidad:{type:Number, require:true},
+        unidadMedida: {type:String, enum : ["Kg", "Gr","Ml","L"], require:true},
         precioUnitario: {type:Number, require:true},
-        id_contrato: {type:mongoose.Schema.Types.ObjectId, ref:'ItemsPresupuesto', require:true},
-        id_lote: {type:mongoose.Schema.Types.ObjectId, ref:'Lote', require:true},
-        iva:{type:Number, require:true},
-        consumible: {type:Boolean, require:true, default:true},
-        estado:{type: Boolean, default:1},
+        createAd: {type:Date, default:Date.now},
     }
-)
+) 
 
 export default mongoose.model("Producto", Producto)

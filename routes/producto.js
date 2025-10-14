@@ -1,52 +1,60 @@
 import { Router } from "express";
 import httpproducto from "../controllers/producto.js";
 import { check } from "express-validator";
-import {validarCampos} from "../middelwares/validator.js";
-import helpersProducto from "../helpers/producto.js"; // Importa la función de verificación
+import { validarCampos } from "../middelwares/validator.js";
 
-const router=new Router()
+const router = new Router();
 
-router.get('/producto', httpproducto.getproducto)
-router.get('/producto/:codigo',[
-    check("codigo", "El codigo es obligatorio").not().isEmpty(),
+// ✅ Obtener todos los productos
+router.get('/producto', [validarCampos], httpproducto.getproducto);
+
+// ✅ Obtener producto por código
+router.get('/producto/:codigo', [
+    check("codigo", "El código del producto es obligatorio").not().isEmpty(),
     validarCampos
-], httpproducto.getproductoid)
-router.get('/producto/:nombre',[
+], httpproducto.getproductoid); 
+
+// ✅ Agregar producto 
+router.post('/agregar', [
+    check("codigo", "El código es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    validarCampos
-], httpproducto.getproductonombre)
-router.get('/producto/:unidadMedida',[
-    check("unidadMedida", "La unidad de medida es obligatorio").not().isEmpty(),
-    validarCampos
-], httpproducto.getproductounimedida)
-router.post('/agregar',[
-    check("codigo", "el codigo es obligatorio").not().isEmpty(),
-    check("codigo", "el codigo ya esta").custom(helpersProducto.checkExistingProductCode),
-    check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
+    check("local", "El local es obligatorio").not().isEmpty(),
+    check("local", "El local debe ser uno de: D1, ARA, DolarCity, otro").isIn(["D1", "ARA", "DolarCity", "otro"]),
+    check("cantidad", "La cantidad es obligatoria").not().isEmpty(),
+    check("cantidad", "La cantidad debe ser un número válido").isNumeric(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
+    check("unidadMedida", "La unidad de medida debe ser una de: Kg, Gr, Ml, L").isIn(["Kg", "Gr", "Ml", "L"]),
     check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
-    check("id_lote", "El lote es obligatorio").not().isEmpty(),
-    check("id_contrato", "El contrato es obligatorio").not().isEmpty(),
-    check("iva", "El iva es obligatorio").not().isEmpty(),
+    check("precioUnitario", "El precio unitario debe ser un número válido").isNumeric(),
     validarCampos
-],httpproducto.postAgregarproducto );
-router.put('/producto/:id',[
-    check("codigo", "el codigo es obligatorio").not().isEmpty(),
-    check("codigo").custom(helpersProducto.checkExistingProductCode),
+], httpproducto.postAgregarproducto);
+
+// ✅ Editar producto
+router.put('/producto/:codigo', [
+    check("codigo", "El código es obligatorio").not().isEmpty(),
     check("nombre", "El nombre es obligatorio").not().isEmpty(),
-    check("descripcion", "La descripcion es obligatoria").not().isEmpty(),
+    check("descripcion", "La descripción es obligatoria").not().isEmpty(),
+    check("local", "El local es obligatorio").not().isEmpty(),
+    check("local", "El local debe ser uno de: D1, ARA, DolarCity, otro").isIn(["D1", "ARA", "DolarCity", "otro"]),
+    check("cantidad", "La cantidad es obligatoria").not().isEmpty(),
+    check("cantidad", "La cantidad debe ser un número válido").isNumeric(),
     check("unidadMedida", "La unidad de medida es obligatoria").not().isEmpty(),
+    check("unidadMedida", "La unidad de medida debe ser una de: Kg, Gr, Ml, L").isIn(["Kg", "Gr", "Ml", "L"]),
     check("precioUnitario", "El precio unitario es obligatorio").not().isEmpty(),
-    check("id_lote", "El lote es obligatorio").not().isEmpty(),
-    check("id_contrato", "El contrato es obligatorio").not().isEmpty(),
-    check("iva", "El iva es obligatorio").not().isEmpty(),
-    validarCampos,
-], httpproducto.putproducto);
-    
-router.put("/inactivar/:id", httpproducto.putproductoInactivar); 
+    check("precioUnitario", "El precio unitario debe ser un número válido").isNumeric(),
+    validarCampos
+], httpproducto.putEditarProducto);
 
-router.put("/activar/:id", httpproducto.putproductoActivar); 
-// router.delete("/productoDel/:id", httpproducto.deleteproducto);
+// ✅ Eliminar por nombre
+router.delete('/eliminar/:nombre', [
+    check("nombre", "El nombre es obligatorio para eliminar el producto").not().isEmpty(),
+    validarCampos
+], httpproducto.deleteproducto);
 
-export default router
+// ✅ Eliminar por código o ID
+router.delete('/eliminar/codigo/:id', [
+    check("id", "El ID del producto es obligatorio").not().isEmpty(),
+    validarCampos
+], httpproducto.deleteproductoid);
+
+export default router;
